@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Tags {% endblock %}
+
+{% block content %}
+    <ul>
+    {% for title, entry in entries.items() %}
+      <dt><article class="post">{{ title }}</article></dt>
+      <dd>
+      {% for article in entry |sort(reverse=true, attribute='date')%}
+            <a href="{{ article.link }} "> <small>{{ article.title }}</small>
+            </a></br>
+      {% endfor %}
+      </dd>
+    {% endfor %}
+    </ul>
+{% endblock content %}

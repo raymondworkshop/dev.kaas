@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<title> {% block title %}{% endblock %} - HOME</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='pygments.css') }}">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js">
+</script>
+<nav>
+    <h1><small><a href="{{ url_for('blog.index')}}">HOME</a></small></h1>
+    <ul>
+        <li><a href="{{ url_for('blog.index')}}"> Blog </a>
+            <!--
+        <li><a href="{{ url_for('info.link')}}"> Link </a>
+             <li><a href="{{ url_for('info.business')}}"> Business </a>
+            -->
+        <li><a href="{{ url_for('info.proj')}}"> Slides </a>
+        <li><a href="{{ url_for('info.book')}}"> Bookshelf </a>
+
+        <li><a href="{{ url_for('info.art')}}"> Art </a>
+        <li><a href="{{ url_for('info.about')}}"> About </a>
+
+    </ul>
+</nav>
+
+<section class="content">
+    <!--
+    <header>
+        {% block header %}{% endblock %}
+      </header>
+      -->
+    {% block content %}
+    {% endblock %}
+
+
+</section>
+
+<!--
+<body>
+   {# application content needs to be provided in the app_content block #}
+{% block app_content %}
+   <div id="react-root"></div>
+    <script src="{{ url_for('static', filename='dist/bundle.js') }}"></script>
+   
+{% endblock %}
+
+
+</body>
+-->
+
+<div class="footer">
+    <ul>
+        <small>&copy; zhaowenlong 2022</small>
+    </ul>
+</div>
+
+<!--
+    <div class="footer-col-2">
+    <ul>
+    <p class="text"></p>
+   </ul>
+    </div>
+    -->

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %} Tags {% endblock %}
+
+{% block content %}
+    <ul>
+    {% for page in tagged|sort(reverse=true, attribute='date') %}
+    
+    {% if page.tags |length %} 
+       {% if tag in page.tags %}
+       
+        <article class="post">
+          <h4> 
+            <a href="{{ url_for("blog.page", path=page.path) }}">{{ page.title }} 
+              <label class="date"> - {{ page.date }}</label></a>
+              <br/>
+
+              {% for tag in page.tags.split(',') if tag|trim != 'home' %}
+              <small>
+                <a href="{{ url_for('blog.tag', tag=tag|trim) }}"> 
+                  <label class="tag">#{{ tag|trim }}</label></a>
+                </small> 
+              {% endfor %}
+            
+          </h4> 
+        </article>
+        {% endif %}
+    {% endif %}
+
+    {% if page.categories |length %} 
+    {% if tag in page.categories  %}
+    
+     <article class="post">
+       <h4> 
+         <a href="{{ url_for("blog.page", path=page.path) }}">{{ page.title }} 
+           <label class="date"> - {{ page.date }}</label></a> 
+           <br/>
+           
+           {% for tag in page.categories if tag|trim != 'home' %}
+           <small>
+            <a href="{{ url_for('blog.tag', tag=tag|trim) }}"> 
+              <label class="tag">#{{ tag|trim }}</label></a>
+            </small> 
+          {% endfor %}
+         
+       </h4> 
+     </article>
+     {% endif %}
+ {% endif %}
+  
+    {% endfor %}
+    </ul>
+{% endblock content %}
