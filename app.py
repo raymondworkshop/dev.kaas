@@ -15,16 +15,23 @@ def my_renderer(text):
     prerendered_body = render_template_string(text)
     return pygmented_markdown(prerendered_body)
 
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # def create_app(test_config=None):
 app = Flask(__name__)
+env_config = os.getenv("APP_SETTINGS", "config.DevelopmentConfig")
+app.config.from_object(env_config)
+
+secret_key = app.config.get("SECRET_KEY")
+print(f"The configured secret key is {secret_key}.")
 
 # if test_config is None:
-app.config.from_pyfile("config.py")
+app.config.from_pyfile("parameters.py")
 # else:
 #    app.config.from_mapping(test_config)
-app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'img')
+app.config["UPLOADED_PHOTOS_DEST"] = os.path.join(basedir, "img")
+
 
 @app.route("/hello")
 def hello():
@@ -45,13 +52,15 @@ import blog
 app.register_blueprint(blog.bp)
 # app.add_url_rule('/', endpoint='index')
 
-#import art
-#app.register_blueprint(art.bp)
+# import art
+# app.register_blueprint(art.bp)
 
 import info
+
 app.register_blueprint(info.bp)
 
 import news
+
 app.register_blueprint(news.bp)
 
 #    return app

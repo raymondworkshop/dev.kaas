@@ -1,18 +1,20 @@
-title: "HOME"
-email: "wenlzhao@gmail.com"
-description: "everyday explorer"
-url: ""
-author_name: "zhaowenlong"
-github_urername: "muyun"
-twitter_username: "_muyun"
+import os
 
-#FlatPages
-FLATPAGES_AUTO_RELOAD = "DEBUG"
-FLATPAGES_EXTENSION = [".md", ".markdown"]
-FLATPAGES_EXTENSION_CONFIG = {
-    'codehilite': {
-        'linenums': 'True'
-    }
-}
-#html_theme = "furo"
 
+class Config:
+    DEBUG = False
+    DEVELOPMENT = False
+    SECRET_KEY = os.getenv("SECRET_KEY", "this-is-the-default-key")
+
+
+class ProductionConfig(Config):
+    pass
+
+
+class StagingConfig(Config):
+    DEBUG = True
+
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    DEVELOPMENT = True
