@@ -1,6 +1,9 @@
 
 #### notes 
-* TODO
+* TODO  
+    - bookmarks  
+        + [buku](https://github.com/jarun/buku)
+    - microblogs 
 
 * staging   -> production  
     - > git commit -m "update" .
